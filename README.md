@@ -6,11 +6,11 @@ Este es un proyecto de un Cajero Automático desarrollado en ASP.NET Core MVC co
 
 * Selección de modo de dispensación:
 
-** Solo billetes de 200 y 1000
+  * Solo billetes de 200 y 1000
 
-** Solo billetes de 100 y 500
+  * Solo billetes de 100 y 500
 
-** Modo eficiente (entrega la menor cantidad de billetes posible)
+  * Modo eficiente (entrega la menor cantidad de billetes posible)
 
 * Retiro de dinero validado según el modo de dispensación seleccionado.
 
