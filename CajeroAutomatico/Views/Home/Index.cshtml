@@ -2,6 +2,39 @@
     ViewData["Title"] = "Cajero Automatico";
 }
 
-<div class="text-center d-flex justify-content-center align-items-center">
-    <h1 class="display-4 mt-5">Aplicacion Cajero Automatico</h1>
-</div>
+
+<section class="container d-flex flex-column justify-content-center align-items-center rounded-1 bg-transparent fw-bold">
+    <div class="text text-center text-uppercase">
+        <h1>Calculadora de prestamos personales</h1>
+        <p>Completar los campos requeridos para visualizar las cuotas a pagar</p>
+    </div>
+
+    <form class="form d-flex flex-column justify-content-between" method="get" action="#">
+        <div class="form-group">
+            <div>
+                <label for="monto">Monto</label>
+                <input type="number" class="form-control" id="monto" name="monto" placeholder="Monto">
+            </div>
+
+
+            <div class="form-box">
+                <label for="monthly">Cantidad de cuotas mensuales:</label>
+                <input type="number" class="form-control" name="monthly" id="monthly">
+            </div>
+
+            <div class="form-box">
+                <label for="yearly">Tasa de interes anual (%):</label>
+                <input type="number" class="form-control" name="yearly" id="yearly">
+            </div>
+
+            <div class="m-2  btn-btn">
+                <button class="rounded-3 btn btn-primary">Calcular</button>
+            </div>
+
+            <div class="form-box">
+                <label for="monthlyPrice">Cuota mensual:</label>
+                <input type="number" class="form-control" name="monthlyPrice" id="monthlyPrice" disabled>
+            </div>
+        </div>
+    </form>
+</section>
