@@ -1,0 +1,18 @@
+﻿@* Billetes200y1000, *@
+@* Billetes100y500, *@
+@* Eficiente *@
+
+@{
+    ViewData["Title"] = "Configuracion del Modo Dispensacion";
+}
+
+<h1 class="text-primary text-xl-center">Configuracion del Modo Dispensacion</h1>
+
+<form method="post">
+    <select name="modo">
+        <option value="Billetes200y1000" selected="@(ViewBag.ModoActual == "Billetes200y1000")">200 y 1000</option>
+        <option value="Billetes100y500" selected="@(ViewBag.ModoActual == "Billetes100y500")">100 y 500</option>
+        <option value="Eficiente" selected="@(ViewBag.ModoActual == "Eficiente")">Eficiente</option>
+    </select>
+    <button class="btn btn-primary d-flex justify-content-center align-items-center" type="submit">Guardar</button>
+</form>

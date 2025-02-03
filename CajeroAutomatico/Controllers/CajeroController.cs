@@ -1,12 +1,38 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace CajeroAutomatico.Controllers
+public class CajeroController : Controller
 {
-    public class CajeroController : Controller
+    private static CajeroModel cajero = new CajeroModel();
+
+    public IActionResult Index()
     {
-        public IActionResult Index()
+        return View();
+    }
+
+    public IActionResult Configuracion()
+    {
+        ViewBag.ModoActual = cajero.ModoActual;
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult Configuracion(CajeroModel.ModoDispensacion modo)
+    {
+        cajero.ModoActual = modo;
+        return RedirectToAction("Configuracion");
+    }
+
+    [HttpPost]
+    public IActionResult Retirar(int monto)
+    {
+        if (monto % 100 != 0)
         {
-            return View();
+            ViewBag.Mensaje = "El monto debe ser múltiplo de 100.";
+            return View("Index");
         }
+
+        var resultado = cajero.RetirarDinero(monto);
+        ViewBag.Resultado = resultado;
+        return View("Index");
     }
 }

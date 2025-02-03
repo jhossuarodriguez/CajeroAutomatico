@@ -8,18 +8,40 @@
         <h2>Completar los campos requeridos*</h2>
     </div>
 
-    <form class="form d-flex flex-column justify-content-between" method="get" action="#">
+    <form class="form"  method="post" action="#">
         <div class="form-group">
             <img class="logo" src="~/images/logo.webp" alt="Imagen Banco" />
             <div>
                 <label for="monto">Monto que desea retirar</label>
-                <input type="number" class="form-control" id="monto" name="monto" placeholder="Introduzca un numero entero">
+                <input 
+                    type="number"
+                    class="form-control"
+                    id="monto" 
+                    ame="monto" 
+                    placeholder="Introduzca un numero entero"
+                    min="100" 
+                    step="100" 
+                    required>
             </div>
             
-            <div class="boton m-2  btn-btn">
-                <button class="rounded-3 btn btn-primary">Retirar</button>
+            <div class="mt-3 boton btn-btn rounded-3 mb-4  ">
+                <button class="btn btn-primary">Retirar</button>
             </div>
 
         </div>
     </form>
 </section>
+@if (ViewBag.Resultado != null)
+{
+   <h3 class="text-center text-primary">Billetes Retirados</h3>
+    <ul>
+        @foreach (var item in ViewBag.Resultado)
+        {
+            <li>@item.Value billete(s) @item.Key</li>
+        }
+    </ul>
+}
+
+@if (ViewBag.Mensaje != null){
+    <h3 class="text-danger">@ViewBag.Mensaje</h3>
+}
