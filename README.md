@@ -43,7 +43,5 @@ Este es un proyecto de un Cajero Automático desarrollado en ASP.NET Core MVC co
 
 📜 Licencia
 
-Este proyecto está bajo la licencia MIT.
-
 🚀 Desarrollado con ASP.NET Core MVC por Jhossua Roa Rodríguez
 
