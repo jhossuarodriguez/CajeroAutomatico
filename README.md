@@ -1,4 +1,4 @@
-# Cajero Automático - ASP.NET Core MVC
+🏧 # Cajero Automático - ASP.NET Core MVC
 
 Este es un proyecto de un Cajero Automático desarrollado en ASP.NET Core MVC con arquitectura Onion y Entity Framework Core. Permite a los usuarios seleccionar un modo de dispensación y retirar dinero de acuerdo con las reglas definidas.
 
@@ -42,8 +42,6 @@ Este es un proyecto de un Cajero Automático desarrollado en ASP.NET Core MVC co
 
 
 📜 Licencia
-
-Este proyecto está bajo la licencia MIT.
 
 🚀 Desarrollado con ASP.NET Core MVC por Jhossua Roa Rodríguez
 
