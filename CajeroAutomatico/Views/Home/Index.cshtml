@@ -10,7 +10,6 @@
 
     <form class="form"  method="post" action="#">
         <div class="form-group">
-            <img class="logo" src="~/images/logo.webp" alt="Imagen Banco" />
             <div>
                 <label for="monto">Monto que desea retirar</label>
                 <input 
@@ -23,9 +22,11 @@
                     step="100" 
                     required>
             </div>
-            
-            <div class="mt-3 boton btn-btn rounded-3 mb-4  ">
-                <button class="btn btn-primary">Retirar</button>
+            <div class="mt-3 gap-3 boton btn-btn rounded-3 mb-4  ">
+                <a href="@Url.Action("Configuration")" class="btn btn-primary" >
+                    Seleccionar Modo
+                </a>
+                <button type="button" class="btn btn-primary" href="">Retirar</button>
             </div>
 
         </div>

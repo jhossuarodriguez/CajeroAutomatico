@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
+namespace CajeroAutomatico.Controllers;
+
 public class CajeroController : Controller
 {
     private static CajeroModel cajero = new CajeroModel();
@@ -9,11 +11,12 @@ public class CajeroController : Controller
         return View();
     }
 
-    public IActionResult Configuracion()
+    public IActionResult Configuration()
     {
         ViewBag.ModoActual = cajero.ModoActual;
         return View();
     }
+
 
     [HttpPost]
     public IActionResult Configuracion(CajeroModel.ModoDispensacion modo)
