@@ -35,11 +35,9 @@ body {
     width: 50%;
     border: 1px solid transparent;
     background: #c2bdbd1e;
+    height: 450px;
 }
 
-.container-hero {
-    margin: 10px;
-}
 
 label{
     margin: 10px;

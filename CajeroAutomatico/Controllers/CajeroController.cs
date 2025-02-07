@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CajeroAutomatico.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CajeroAutomatico.Controllers;
 
@@ -37,5 +38,16 @@ public class CajeroController : Controller
         var resultado = cajero.RetirarDinero(monto);
         ViewBag.Resultado = resultado;
         return View("Index");
+    }
+
+    [HttpPost]
+    public JsonResult RetirarDinero([FromBody] RetiroRequest request)
+    {
+        int monto = request.Monto;
+
+        CajeroModel cajero = new CajeroModel();
+        var resultado = cajero.RetirarDinero(monto);
+
+        return Json(resultado);
     }
 }
