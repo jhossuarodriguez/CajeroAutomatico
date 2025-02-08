@@ -33,7 +33,7 @@ namespace CajeroAutomatico.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            return View("Configuration", model);
+            return View("Index", model);
         }
 
         [HttpPost]
