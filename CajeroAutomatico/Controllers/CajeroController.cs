@@ -1,53 +1,54 @@
 ﻿using CajeroAutomatico.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CajeroAutomatico.Controllers;
-
-public class CajeroController : Controller
+namespace CajeroAutomatico.Controllers
 {
-    private static CajeroModel cajero = new CajeroModel();
-
-    public IActionResult Index()
+    public class CajeroController : Controller
     {
-        return View();
-    }
+        private static CajeroModel cajero = new CajeroModel();
 
-    public IActionResult Configuration()
-    {
-        ViewBag.ModoActual = cajero.ModoActual;
-        return View();
-    }
-
-
-    [HttpPost]
-    public IActionResult Configuracion(CajeroModel.ModoDispensacion modo)
-    {
-        cajero.ModoActual = modo;
-        return RedirectToAction("Configuracion");
-    }
-
-    [HttpPost]
-    public IActionResult Retirar(int monto)
-    {
-        if (monto % 100 != 0)
+        public IActionResult Index()
         {
-            ViewBag.Mensaje = "El monto debe ser múltiplo de 100.";
-            return View("Index");
+            ViewBag.ModoActual = cajero.ModoActual.ToString();
+            return View();
         }
 
-        var resultado = cajero.RetirarDinero(monto);
-        ViewBag.Resultado = resultado;
-        return View("Index");
-    }
+        public IActionResult Configuration()
+        {
+            var model = new Configuration
+            {
+                ModoSeleccionado = cajero.ModoActual
+            };
 
-    [HttpPost]
-    public JsonResult RetirarDinero([FromBody] RetiroRequest request)
-    {
-        int monto = request.Monto;
+            return View(model);
+        }
 
-        CajeroModel cajero = new CajeroModel();
-        var resultado = cajero.RetirarDinero(monto);
+        [HttpPost]
+        public IActionResult Configuration(Configuration model)
+        {
+            if (ModelState.IsValid)
+            {
 
-        return Json(resultado);
+                cajero.ModoActual = model.ModoSeleccionado;
+                TempData["Mensaje"] = "Modo de dispensación actualizado correctamente.";
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View("Configuration", model);
+        }
+
+        [HttpPost]
+        public JsonResult RetirarDinero([FromBody] RetiroRequest request)
+        {
+            if (request == null)
+            {
+                return Json(new { Error = "Debe Ingresar un Monto" });
+            }
+
+            var monto = request.Monto;
+            var resultado = cajero.RetirarDinero(monto);
+
+            return Json(resultado);
+        }
     }
 }

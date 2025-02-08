@@ -1,3 +1,5 @@
+﻿@model CajeroAutomatico.Models.Configuration
+
 ﻿@{
     ViewData["Title"] = "Configuracion del Modo Dispensacion";
 }
@@ -5,16 +7,15 @@
 <div class="d-flex flex-column justify-content-center align-items-center">
     <h1 class="m-5">Configuracion del Modo Dispensacion</h1>
 
-    <form method="post">
-        <select class="form-select" name="modo">
-            <option value="Billetes200y1000" selected="@(ViewBag.ModoActual == "Billetes200y1000")">200 y 1000</option>
-            <option value="Billetes100y500" selected="@(ViewBag.ModoActual == "Billetes100y500")">100 y 500</option>
-            <option value="Eficiente" selected="@(ViewBag.ModoActual == "Eficiente")">Eficiente</option>
+    <form method="post" class="form">
+        <select asp-for="ModoSeleccionado"
+                asp-items="Html.GetEnumSelectList<CajeroAutomatico.Models.CajeroModel.ModoDispensacion>()"
+                class="form-select">
         </select>
-    </form>
 
-    <div class="justify-content-center mt-5 gap-5">
-        <a class="btn btn-primary" href="@Url.Action("Index")">Volver</a>
-        <button class="btn btn-primary" type="submit">Guardar</button>
-    </div>
+        <div class="justify-content-center mt-5 gap-5">
+            <a class="btn btn-primary" href="@Url.Action("Index", "Home")">Volver</a>
+            <button class="btn btn-primary" type="submit">Guardar</button>
+        </div>
+    </form>
 </div>

@@ -2,13 +2,14 @@
     ViewData["Title"] = "Cajero Automatico";
 }
 
-<section class=" rounded-1 bg-transparent fw-bold">
+
+<section class="rounded-1 bg-transparent fw-bold">
     <div class="text text-center text-uppercase">
         <h1>Cajero Automatico</h1>
         <h2>Completar los campos requeridos*</h2>
     </div>
 
-    <form class="form"  method="post" action="#">
+    <form class="form"  method="post">
         <div class="form-group">
             <div>
                 <label for="monto">Monto que desea retirar</label>
@@ -16,7 +17,7 @@
                     type="number"
                     class="form-control"
                     id="monto" 
-                    ame="monto" 
+                    name="monto" 
                     placeholder="Introduzca un numero entero"
                     min="100" 
                     step="100" 
@@ -26,56 +27,27 @@
                 <a href="@Url.Action("Configuration")" class="btn btn-primary" >
                     Seleccionar Modo
                 </a>
-                <button onclick="retirarDinero()" type="button" class="btn btn-primary" href="">Retirar</button>
+                <button onclick="retirarDinero()" type="button" class="btn btn-primary">Retirar</button>
             </div>
 
         </div>
     </form>
-</section>
 
-<div class="modal fade" id="resultadoModal" tabindex="-1" aria-labelledby="resultadoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="resultadoModalLabel">Billetes Retirados</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <ul id="listaBilletes" class="list-group"></ul>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+    <div class="modal fade" id="resultadoModal" tabindex="-1" aria-labelledby="resultadoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="resultadoModalLabel">Billetes Retirados</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul id="listaBilletes" class="list-group"></ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<script>
-    function retirarDinero() {
-        var monto = document.getElementById("monto").value;
-
-        fetch('/Cajero/RetirarDinero', { 
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ monto: monto })
-        })
-        .then(response => response.json())
-        .then(data => {
-            var lista = document.getElementById("listaBilletes");
-            lista.innerHTML = "";
-            for (var billete in data) {
-                var item = document.createElement("li");
-                item.className = "list-group-item";
-                item.textContent = billete + " : " + data[billete] + " billetes";
-                lista.appendChild(item);
-            }
-
-            var modal = new bootstrap.Modal(document.getElementById('resultadoModal'));
-            modal.show();
-        })
-        .catch(error => console.error("Error:", error));
-    }
-</script>
+</section>
 
