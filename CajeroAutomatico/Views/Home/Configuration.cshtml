@@ -7,11 +7,12 @@
 <div class="d-flex flex-column justify-content-center align-items-center">
     <h1 class="m-5">Configuracion del Modo Dispensacion</h1>
 
-    <form method="post" class="form">
-        <select asp-for="ModoSeleccionado"
-                asp-items="Html.GetEnumSelectList<CajeroAutomatico.Models.CajeroModel.ModoDispensacion>()"
-                class="form-select">
-        </select>
+    <form asp-action="Configuration" method="post" class="form">
+        <div class="form-group">
+            <select asp-for="ModoSeleccionado" class="form-control" asp-items="Html.GetEnumSelectList<CajeroAutomatico.Models.CajeroModel.ModoDispensacion>()" class="form-select">
+                <option value="">Seleccione un modo de dispensacion</option>
+            </select>
+        </div>
 
         <div class="justify-content-center mt-5 gap-5">
             <a class="btn btn-primary" href="@Url.Action("Index", "Home")">Volver</a>
@@ -19,3 +20,9 @@
         </div>
     </form>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -5,7 +5,7 @@ namespace CajeroAutomatico.Controllers
 {
     public class CajeroController : Controller
     {
-        private static CajeroModel cajero = new CajeroModel();
+        private static readonly CajeroModel cajero = new CajeroModel();
 
         public IActionResult Index()
         {
@@ -28,7 +28,6 @@ namespace CajeroAutomatico.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 cajero.ModoActual = model.ModoSeleccionado;
                 TempData["Mensaje"] = "Modo de dispensación actualizado correctamente.";
                 return RedirectToAction("Index", "Home");
